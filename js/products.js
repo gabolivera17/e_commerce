@@ -34,12 +34,4 @@ fetch(URL_PRODUCTOS)
         `
         document.getElementById("div-lista-productos").innerHTML = htmlContentToAppend; 
     }
-
-
-
-
-
-
-
-
 });
