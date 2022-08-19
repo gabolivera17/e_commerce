@@ -28,6 +28,7 @@ fetch(URL_PRODUCTOS)
                         <small class="text-muted"> `+ producto.description +`</small> 
                         </div>
                         <small class="text-muted">` + producto.soldCount + ` productos vendidos</small> 
+                        <small class="text-muted"> Precio: ` + producto.cost + ` USD</small> 
                     </div>
                 </div>
             </div>
