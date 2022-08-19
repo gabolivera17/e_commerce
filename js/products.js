@@ -5,15 +5,16 @@ console.log(listaProductos);
 
 fetch(URL_PRODUCTOS)
 .then(function(respuesta) {
-    return respuesta.json()
+    return respuesta.json();
 })
 .then(function(datos) {
-    listaProductos = datos.results;
-    
+    listaProductos = datos.products;
+    console.log(listaProductos); //Esto no está funcionando, revisar por qué no se está registrando la data dentro del array
+
     let divListaAutos = document.getElementById("div-lista-productos")
 
     let htmlContentToAppend = "";
-    for (producto of listaProductos){
+    for (let producto of listaProductos){
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
             <div class="row">
