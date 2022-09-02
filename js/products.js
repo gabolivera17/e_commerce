@@ -9,7 +9,7 @@ fetch(URL_PRODUCTOS)
 })
 .then(function(datos) {
     listaProductos = datos.products;
-    console.log(listaProductos); //Esto no está funcionando, revisar por qué no se está registrando la data dentro del array
+    console.log(listaProductos);
 
     let divListaAutos = document.getElementById("div-lista-productos")
 
