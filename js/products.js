@@ -6,6 +6,12 @@ console.log(listaProductos);
 let precioMin = undefined;
 let precioMax = undefined;
 
+const ORDER_ASC_BY_COST = "MinToMax";
+const ORDER_DESC_BY_COST = "MaxToMin";
+const ORDER_BY_PROD_REL = "Rel.";
+
+let currentSortCriteria = ORDER_ASC_BY_COST;
+
 
 function showProductList(URL){
 
@@ -17,6 +23,36 @@ fetch(URL)
     listaProductos = datos.products;
     console.log(listaProductos);
 
+    function sortProducts(criteria, array){
+        let result = [];
+        if (criteria === ORDER_ASC_BY_COST)
+        {
+            result = array.sort(function(a, b) {
+                if ( a.cost < b.cost ){ return -1; }
+                if ( a.cost > b.cost ){ return 1; }
+                return 0;
+            });
+        }else if (criteria === ORDER_DESC_BY_COST){
+            result = array.sort(function(a, b) {
+                if ( a.cost > b.cost ){ return -1; }
+                if ( a.cost < b.cost ){ return 1; }
+                return 0;
+            });
+        }else if (criteria === ORDER_BY_PROD_REL){
+            result = array.sort(function(a, b) {
+                let aRel = parseInt(a.soldCount);
+                let bRel = parseInt(b.soldCount);
+    
+                if ( aRel > bRel ){ return -1; }
+                if ( aRel < bRel ){ return 1; }
+                return 0;
+            });
+        }
+        return result;
+    }
+
+    listaProductos = sortProducts(currentSortCriteria,listaProductos);
+    
     let htmlContentToAppend = "";
     for (let producto of listaProductos){
 
@@ -78,5 +114,24 @@ document.getElementById("filtrar-por-precio").addEventListener("click", function
 
     showProductList(URL_PRODUCTO_SELECCIONADO);
 });
+
+
+document.getElementById("sortMinToMax").addEventListener("click", function(){
+    currentSortCriteria = ORDER_ASC_BY_COST;
+    showProductList(URL_PRODUCTO_SELECCIONADO);
+});
+
+document.getElementById("sortMaxToMin").addEventListener("click", function(){
+    currentSortCriteria = ORDER_DESC_BY_COST;
+    showProductList(URL_PRODUCTO_SELECCIONADO);
+});
+
+document.getElementById("sortByRelevance").addEventListener("click", function(){
+    currentSortCriteria = ORDER_BY_PROD_REL;
+    showProductList(URL_PRODUCTO_SELECCIONADO);
+});
+
+
+
 
 
