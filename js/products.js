@@ -54,12 +54,27 @@ showProductList(URL_PRODUCTO_SELECCIONADO);
 
 
 document.getElementById("filtrar-por-precio").addEventListener("click", function(){
-    //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
+    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
+    //de productos por categoría.
     precioMin = document.getElementById("precio-min").value;
     precioMax = document.getElementById("precio-max").value;
 
     console.log(precioMin);
     console.log(precioMax);
+
+    if ((precioMin != undefined) && (precioMin != "") && (parseInt(precioMin)) >= 0){
+        precioMin = parseInt(precioMin);
+    }
+    else{
+        precioMin = undefined;
+    }
+
+    if ((precioMax != undefined) && (precioMax != "") && (parseInt(precioMax)) >= 0){
+        precioMax = parseInt(precioMax);
+    }
+    else{
+        precioMax = undefined;
+    }
 
     showProductList(URL_PRODUCTO_SELECCIONADO);
 });
