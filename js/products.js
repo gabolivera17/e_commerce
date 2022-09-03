@@ -1,9 +1,15 @@
-let URL_PRODUCTO_SELECCIONADO = `https://japceibal.github.io/emercado-api/cats_products/`+ localStorage.getItem("catID") + `.json`
+let URL_PRODUCTO_SELECCIONADO = `https://japceibal.github.io/emercado-api/cats_products/`+ localStorage.getItem("catID") + `.json`;
 
 let listaProductos = [];
 console.log(listaProductos);
 
-fetch(URL_PRODUCTO_SELECCIONADO)
+let precioMin = undefined;
+let precioMax = undefined;
+
+
+function showProductList(URL){
+
+fetch(URL)
 .then(function(respuesta) {
     return respuesta.json();
 })
@@ -11,10 +17,12 @@ fetch(URL_PRODUCTO_SELECCIONADO)
     listaProductos = datos.products;
     console.log(listaProductos);
 
-    let divListaAutos = document.getElementById("div-lista-productos")
-
     let htmlContentToAppend = "";
     for (let producto of listaProductos){
+
+        if (((precioMin == undefined) || (precioMin != undefined && parseInt(producto.cost) >= precioMin)) &&
+            ((precioMax == undefined) || (precioMax != undefined && parseInt(producto.cost) <= precioMax))){
+
         htmlContentToAppend += `
         <div class="list-group-item list-group-item-action">
             <div class="row">
@@ -34,6 +42,26 @@ fetch(URL_PRODUCTO_SELECCIONADO)
             </div>
         </div>
         `
+        }
+
         document.getElementById("div-lista-productos").innerHTML = htmlContentToAppend; 
     }
 });
+
+}
+
+showProductList(URL_PRODUCTO_SELECCIONADO);
+
+
+document.getElementById("filtrar-por-precio").addEventListener("click", function(){
+    //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
+    precioMin = document.getElementById("precio-min").value;
+    precioMax = document.getElementById("precio-max").value;
+
+    console.log(precioMin);
+    console.log(precioMax);
+
+    showProductList(URL_PRODUCTO_SELECCIONADO);
+});
+
+
