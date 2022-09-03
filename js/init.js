@@ -41,5 +41,3 @@ let getJSONData = function(url){
 }
 
 document.getElementById("email-usuario").innerHTML = localStorage.getItem("email-usuario");
-
-document.getElementById("")

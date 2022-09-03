@@ -1,9 +1,9 @@
-const URL_PRODUCTOS = "https://japceibal.github.io/emercado-api/cats_products/101.json";
+let URL_PRODUCTO_SELECCIONADO = `https://japceibal.github.io/emercado-api/cats_products/`+ localStorage.getItem("catID") + `.json`
 
 let listaProductos = [];
 console.log(listaProductos);
 
-fetch(URL_PRODUCTOS)
+fetch(URL_PRODUCTO_SELECCIONADO)
 .then(function(respuesta) {
     return respuesta.json();
 })
