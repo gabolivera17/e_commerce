@@ -12,6 +12,11 @@ const ORDER_BY_PROD_REL = "Rel.";
 
 let currentSortCriteria = ORDER_ASC_BY_COST;
 
+function setProdID(id) {
+    localStorage.setItem("prodID", id);
+    console.log(localStorage.getItem("prodID"))
+    window.location = "product-info.html";
+}
 
 function showProductList(URL){
 
@@ -60,7 +65,7 @@ fetch(URL)
             ((precioMax == undefined) || (precioMax != undefined && parseInt(producto.cost) <= precioMax))){
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action cursor-active" onclick="setProdID(${producto.id})">
             <div class="row">
                 <div class="col-3">
                     <img src="` + producto.image + `" alt="product image" class="img-thumbnail">
@@ -90,8 +95,7 @@ showProductList(URL_PRODUCTO_SELECCIONADO);
 
 
 document.getElementById("filtrar-por-precio").addEventListener("click", function(){
-    //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
-    //de productos por categoría.
+    //Obtengo el mínimo y máximo de los intervalos para filtrar por precio
     precioMin = document.getElementById("precio-min").value;
     precioMax = document.getElementById("precio-max").value;
 
