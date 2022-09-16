@@ -1,4 +1,4 @@
-let URL_PRODUCTO_SELECCIONADO = `https://japceibal.github.io/emercado-api/cats_products/`+ localStorage.getItem("catID") + `.json`;
+let URL_CATEGORIA_SELECCIONADA = `https://japceibal.github.io/emercado-api/cats_products/`+ localStorage.getItem("catID") + `.json`;
 
 let listaProductos = [];
 console.log(listaProductos);
@@ -17,6 +17,7 @@ function setProdID(id) {
     console.log(localStorage.getItem("prodID"))
     window.location = "product-info.html";
 }
+
 
 function showProductList(URL){
 
@@ -91,7 +92,7 @@ fetch(URL)
 
 }
 
-showProductList(URL_PRODUCTO_SELECCIONADO);
+showProductList(URL_CATEGORIA_SELECCIONADA);
 
 
 document.getElementById("filtrar-por-precio").addEventListener("click", function(){
@@ -116,23 +117,23 @@ document.getElementById("filtrar-por-precio").addEventListener("click", function
         precioMax = undefined;
     }
 
-    showProductList(URL_PRODUCTO_SELECCIONADO);
+    showProductList(URL_CATEGORIA_SELECCIONADA);
 });
 
 
 document.getElementById("sortMinToMax").addEventListener("click", function(){
     currentSortCriteria = ORDER_ASC_BY_COST;
-    showProductList(URL_PRODUCTO_SELECCIONADO);
+    showProductList(URL_CATEGORIA_SELECCIONADA);
 });
 
 document.getElementById("sortMaxToMin").addEventListener("click", function(){
     currentSortCriteria = ORDER_DESC_BY_COST;
-    showProductList(URL_PRODUCTO_SELECCIONADO);
+    showProductList(URL_CATEGORIA_SELECCIONADA);
 });
 
 document.getElementById("sortByRelevance").addEventListener("click", function(){
     currentSortCriteria = ORDER_BY_PROD_REL;
-    showProductList(URL_PRODUCTO_SELECCIONADO);
+    showProductList(URL_CATEGORIA_SELECCIONADA);
 });
 
 
