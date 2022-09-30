@@ -2,6 +2,12 @@ let URL_PRODUCTO_SELECCIONADO = `https://japceibal.github.io/emercado-api/produc
 
 console.log(URL_PRODUCTO_SELECCIONADO);
 
+function setProdID(id) {
+  localStorage.setItem("prodID", id);
+  console.log(localStorage.getItem("prodID"))
+  window.location = "product-info.html";
+}
+
 function showProductInfo(url){
 
     fetch(url)
@@ -80,3 +86,41 @@ function showProductComments(url){
 }
 
 showProductComments(URL_COMENTARIOS_PRODUCTO);
+
+function showProductRelated(url){
+
+  fetch(url)
+  .then(function(respuesta) {
+  return respuesta.json();
+  })
+  .then(function(datos){
+
+      let productosRelacionados = datos.relatedProducts;
+
+      console.log(productosRelacionados);
+
+      let contenidoHTML =``;
+
+      for (let productoRelacionado of productosRelacionados){
+      contenidoHTML += `
+      <div class="list-group-item list-group-item-action" onclick="setProdID(${productoRelacionado.id})">
+          <div class="row">
+              <div class="col-3">
+                  <img src="` + productoRelacionado.image + `" alt="product image" class="img-thumbnail">
+              </div>
+              <div class="col">
+                  <div class="d-flex w-100 justify-content-between">
+                      <div class="mb-1">
+                      <h5>` + productoRelacionado.name + `<h5>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      `
+    }
+      document.getElementById("divProductosRelacionados").innerHTML = contenidoHTML;
+  })
+}
+
+showProductRelated(URL_PRODUCTO_SELECCIONADO);
