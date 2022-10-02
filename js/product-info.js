@@ -87,7 +87,8 @@ function showProductComments(url){
 
 showProductComments(URL_COMENTARIOS_PRODUCTO);
 
-function showProductRelated(url){
+
+function showRelatedProducts(url){
 
   fetch(url)
   .then(function(respuesta) {
@@ -123,4 +124,4 @@ function showProductRelated(url){
   })
 }
 
-showProductRelated(URL_PRODUCTO_SELECCIONADO);
+showRelatedProducts(URL_PRODUCTO_SELECCIONADO);
