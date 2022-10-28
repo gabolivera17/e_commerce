@@ -31,13 +31,15 @@
           </li>
           <li class="nav-item">
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="email-usuario" data-bs-toggle="dropdown" aria-expanded="false">
-                
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="email-usuario"
+                data-bs-toggle="dropdown" aria-expanded="false">
+
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
-                <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear(email-usuario)">Cerrar Sesión</a></li>
+                <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear(email-usuario)">Cerrar
+                    Sesión</a></li>
               </ul>
             </div>
             <!-- <a class="nav-link" href="" id="email-usuario"></a> -->
@@ -55,19 +57,14 @@
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
-  
+
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Articulos en tu carrito: </h3>
           </div>
 
           <div id="articulos-carrito"></div>
 
-          <div class="card">
-            <div class="card-body">
-              <button type="button" class="btn btn-warning btn-block btn-lg">Pagar</button>
-            </div>
-          </div>
-  
+
         </div>
       </div>
     </div>
@@ -75,71 +72,239 @@
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
-  
+
+
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Tipo de Envío:</h3>
           </div>
 
-          <form action="">
+          <div class="card" id="carta-envio">
+            <div class="card-body">
 
-            <label for=Premium>
-              <input type="radio" name="envio" >
-              Premium 2 a 5 días (15%)
-            </label>
-              <br>
-              <label for="Express">
-              <input type="radio" name="envio" >
-              Express 5 a 8 días (7%)
-            </label>
-              <br>
-              <label for="Standard">
-              <input type="radio" name="envio" >
-              Standard 12 a 15 días (5%)
-            </label>
-          </form>
-  
+              <form action="" id="">
+
+                <label for="premium">
+                  <input type="radio" name="envio" id="premium" onclick="recalcularMontos()">
+                  Premium 2 a 5 días (15%)
+                </label>
+                <br>
+                <label for="express">
+                  <input type="radio" name="envio" id="express" onclick="recalcularMontos()">
+                  Express 5 a 8 días (7%)
+                </label>
+                <br>
+                <label for="standard">
+                  <input type="radio" name="envio" id="standard" onclick="recalcularEnvio()">
+                  Standard 12 a 15 días (5%)
+                </label>
+              </form>
+              <p id="mensaje-envio" class="mensaje-error"></p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-black">Dirección de Envío</h3>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+
+              <form action="">
+
+                <label for="Calle">Calle
+                  <br>
+                  <input type="text" id="input-calle">
+                  <p id="mensaje-calle" class="mensaje-error"></p>
+                </label>
+                <br>
+                <br>
+                <label for="Numero">Número
+                  <br>
+                  <input type="text" id="input-numero">
+                  <p id="mensaje-numero" class="mensaje-error"></p>
+                </label>
+                <br>
+                <br>
+                <label for="Esquina">Esquina
+                  <br>
+                  <input type="text" id="input-esquina">
+                  <p id="mensaje-esquina" class="mensaje-error"></p>
+                </label>
+              </form>
+
+            </div>
+          </div>
+
+          <br>
+          <br>
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-black">Costos: </h3>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+
+              <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                  <div class="row d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <p class="lead fw-normal mb-2">Subtotal Productos</p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                      <p class="lead fw-normal mb-3" id="subtotal-carrito">SUBTOTAL</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                  <div class="row d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <p class="lead fw-normal mb-2">Costo de Envío</p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                      <p class="lead fw-normal mb-3" id="costo-de-envio">COSTO DE ENVÍO</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card rounded-3 mb-4">
+                <div class="card-body p-4">
+                  <div class="row d-flex justify-content-between align-items-center">
+
+                    <div class="col-md-2 col-lg-2 col-xl-2">
+                      <p class="lead fw-normal mb-2">Total</p>
+                    </div>
+
+                    <div class="col-md-2 col-lg-2 col-xl-2 text-end">
+                      <p class="lead fw-normal mb-3" id="total-carrito">TOTAL</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12">
-  
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-normal mb-0 text-black">Dirección de Envío</h3>
+        <div class="col-2">
+
+          <div class="col-sm-12">
+            <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+              data-bs-target="#modal-pago" id="forma-pago">Forma de Pago</button>
+              <p id="mensaje-pago" class="mensaje-error"></p>
           </div>
 
-          <form action="">
-
-            <label for="Calle">Calle
-              <br>
-              <input type="text">
-            </label>
-            <br>
-            <br>
-            <label for="Numero">Numero
-              <br>
-              <input type="text">
-            </label>
-            <br>
-            <br>
-            <label for="Esquina">Esquina
-              <br>
-              <input type="text">
-            </label>
-
-
-          </form>
-  
         </div>
       </div>
     </div>
 
 
 
+    <div class="modal fade" id="modal-pago" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Forma de Pago</h1>
+  
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
-    
+            <label for="tarjeta-de-credito">
+              <input type="radio" id="tarjeta-de-credito" name="forma-de-pago" onclick="pagoTarjeta()">
+              Tarjeta de Crédito
+            </label>
+
+            <form action="" >
+              <fieldset id="form-tarjeta">
+            
+            <label for="numero-tarjeta">
+              Numero de Tarjeta
+              <br>
+              <input type="text" id="numero-tarjeta">
+            </label>
+            <br>
+            <label for="codigo-seguridad">
+              Código de Seguridad
+              <br>
+              <input type="text" id="codigo-seguridad">
+            </label>
+            <br>
+            <label for="fecha-vencimiento">
+              Fecha de Vencimiento (MM/AA)
+              <br>
+              <input type="text" id="fecha-vencimiento">
+            </label>
+
+          </fieldset>
+
+            </form>
+            
+            <br>
+
+            <label for="transferencia-bancaria">
+              <input type="radio" id="transferencia-bancaria" name="forma-de-pago" onclick="pagoCuentaBancaria()">
+              Transferencia Bancaria
+            </label>
+
+            <form action="" >
+              <fieldset id="form-transferencia-bancaria">
+            
+            <label for="numero-cuenta">
+              Numero de cuenta
+              <br>
+              <input type="text" id="numero-cuenta">
+            </label>
+
+          </fieldset>
+
+            </form>
+
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-2">
+
+          <div class="card"  id="borde-boton-pagar">
+            <div class="card-body">
+              <button type="button" class="btn btn-warning btn-block btn-lg" id="boton-pagar">Pagar</button>
+            </div>
+          </div>
+          <p id="mensaje-compra"></p>
+
+        </div>
+      </div>
+    </div>
+
 
     <!-- <div class="container">
       <div class="alert alert-danger text-center" role="alert">

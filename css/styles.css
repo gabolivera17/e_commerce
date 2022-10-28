@@ -188,3 +188,11 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+
+.mensaje-error{
+  color: crimson;
+}
+
+#borde-boton-pagar{
+  border-color: white;
+}
