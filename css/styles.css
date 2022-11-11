@@ -193,6 +193,10 @@ a.custom-card:hover {
   color: crimson;
 }
 
+.mensaje-exito{
+  color: green;
+}
+
 #borde-boton-pagar{
   border-color: white;
 }

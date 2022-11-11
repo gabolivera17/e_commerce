@@ -52,7 +52,7 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item" href="cart.html">Mi Carrito</a></li>
                 <li><a class="dropdown-item" href="my-profile.html">Mi Perfil</a></li>
-                <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear(email-usuario)">Cerrar Sesión</a></li>
+                <li><a class="dropdown-item" href="index.html" onclick="localStorage.clear()">Cerrar Sesión</a></li>
               </ul>
             </div>
             <!-- <a class="nav-link" href="" id="email-usuario"></a> -->
@@ -61,13 +61,102 @@
       </div>
     </div>
   </nav>
-  <main>
+
+  <div class="text-center p-4">
+    <h2>Perfil</h2>
+  </div>
+
+  <div class="container h-100 py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12">
+
+        <div class="card" id="carta-envio">
+          <div class="card-body">
+
+            <form action="" id="perfil">
+
+              <label for="nombre">
+                Nombre*
+                <br>
+                <input type="text" id="nombre">
+                <p id="mensaje-nombre" class="mensaje-error"></p>
+              </label>
+              <br> 
+              <br>
+              <label for="segundo-nombre">
+                Segundo Nombre
+                <br>
+                <input type="text" id="segundo-nombre">
+              </label>
+              <br>
+              <br>
+              <label for="apellido">
+                Primer Apellido*
+                <br>
+                <input type="text" id="apellido">
+                <p id="mensaje-apellido" class="mensaje-error"></p>
+              </label>
+              <br>
+              <br>
+              <label for="segundo-apellido">
+                Segundo Apellido
+                <br>
+                <input type="text" id="segundo-apellido">
+              </label>
+              <br>
+              <br>
+              <label for="email">
+                E-mail
+                <br>
+                <input type="email" id="email">
+              </label>
+              <br>
+              <br>
+              <label for="telefono">
+                Teléfono de Contacto*
+                <br>
+                <input type="text" id="telefono">
+                <p id="mensaje-telefono" class="mensaje-error"></p>
+              </label>
+              <br>
+              <br>
+
+              <input type="submit" value="Guardar" id="btn-guardar"> 
+              <p id="mensaje-exito" class="mensaje-exito"></p>
+          
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <!-- <main>
     <div class="container">
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
       </div>
     </div>
-  </main>
+  </main> -->
   <footer class="text-muted">
     <div class="container">
       <p class="float-end">
